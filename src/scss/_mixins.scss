@@ -1,0 +1,18 @@
+
+@mixin display-container($flex-grid,$align) {
+    display: $flex-grid,;
+    align-items: $align;
+}
+
+@mixin flex-direction($row) {
+    flex-direction: $row;
+}
+@mixin width-height-100{
+    width: 100%;
+    height: 100%;
+}
+
+@mixin  justify-align-self($justify,$align) {
+    justify-self: $justify;
+    align-self: $align;
+}
