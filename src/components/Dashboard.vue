@@ -18,14 +18,9 @@ import NavbarSearch from "../components/Dashboard/NavbarSearch";
 
 export default {
   name: "Dashboard",
-  props: {
-    msg: String
-  },
   data() {
     return {
-      accessToken:
-        "pk.eyJ1IjoibmlraGlsamhhIiwiYSI6ImNrOG9rd3gyNjB1Z2wzZXJ4NHg0eDU3a2gifQ.lXENFoV9AIjSAKcJN6Pb-Q", // your access token. Needed if you using Mapbox maps
-      mapStyle: "mapbox://styles/mapbox/satellite-streets-v11", // your map style
+      serviceURL:"https://webreports-ad4e0.firebaseio.com/.json",
       expenditure: [],
       expenditureData: {},
       locality: [],
@@ -39,14 +34,14 @@ export default {
   components: { Population, Income, Expenditure, MapVisual, NavbarSearch },
   created() {
     axios
-      .get("https://webreports-ad4e0.firebaseio.com/.json")
+      .get(this.serviceURL)
       .then(res => {
         if (res.data) {
           // console.log(res.data);
           this.locality = res.data.locality ? res.data.locality.features : [];
           this.pincode = res.data.pincode ? res.data.pincode.features : [];
           this.expenditure = res.data.expenditure ? res.data.expenditure : [];
-          this.income = res.data.income ? res.data.income: [];
+          this.income = res.data.income ? res.data.income : [];
           // console.log(this.income);
           // console.log(this.locality.find(el => el.attributes.locality === "Andrahalli"));
           // console.log(this.locality);
@@ -73,9 +68,10 @@ export default {
       if (this.localityData) {
         this.incomeData = this.income.find(
           ({ locality }) =>
-            locality.toLowerCase() === this.localityData["attributes"]["locality"].toLowerCase()
+            locality.toLowerCase() ===
+            this.localityData["attributes"]["locality"].toLowerCase()
         );
-        this.expenditureData={};
+        this.expenditureData = {};
       } else {
         this.incomeData = {};
       }
@@ -127,15 +123,14 @@ export default {
     "population income"
     "expenditure expenditure";
 
-@media only screen and (max-width: 700px){
-  grid-template-columns: auto;
-  grid-template-rows: minmax(min-content,max-content) 1fr 1fr 1fr;
-  grid-template-areas:
-    "navbar"
-    "population"
-    "income"
-    "expenditure";
+  @media only screen and (max-width: 700px) {
+    grid-template-columns: auto;
+    grid-template-rows: minmax(min-content, max-content) 1fr 1fr 1fr;
+    grid-template-areas:
+      "navbar"
+      "population"
+      "income"
+      "expenditure";
+  }
 }
-}
-
 </style>

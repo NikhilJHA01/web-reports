@@ -33,10 +33,10 @@
             required
           />
           <span v-if="form.serachByLocality == 'false'" class="searchBar--text">
-            * Pincode must be of 6 digits</span
+            *Must be valid 6 digits(eg: 560040)</span
           >
           <span v-else class="searchBar--text">
-            * Locality should be in strings</span
+            *Must be valid (eg: kaveri nagar)</span
           >
         </div>
         <input class="navbar--input__button" type="submit" value="Search" />
@@ -64,7 +64,7 @@ export default {
             return;
          }
         else{
-        console.log(this.form.searchInput);
+        // console.log(this.form.searchInput);
         this.$emit("searchInput", this.form);
         this.form.searchInput = "";
       }
