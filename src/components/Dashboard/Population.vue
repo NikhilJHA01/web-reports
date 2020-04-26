@@ -2,7 +2,7 @@
   <div class="population">
     <div class="section">
       <span class="section--label">Population</span>
-      <span class="section--count--value">{{
+      <span class="section--value">{{
         localityPopulation["attributes"] &&
         localityPopulation["attributes"]["population"]
           ? localityPopulation["attributes"]["population"]
@@ -11,20 +11,20 @@
     </div>
     <div class="section">
       <span class="section--label">Households</span
-      ><span class="section--households--value">{{ localityPopulation && localityPopulation["attributes"]
+      ><span class="section--value">{{ localityPopulation && localityPopulation["attributes"]
         ? localityPopulation["attributes"]["households"]
         : "NA" }}</span>
     </div>
     <div class="section">
       <span class="section--label">{{localityPopulation && localityPopulation["attributes"]
         && localityPopulation["attributes"]["pincode"]?'Pincode':'Locality'}}</span
-      ><span class="section--country--value">{{ localityPopulation && localityPopulation["attributes"]
+      ><span class="section--value">{{ localityPopulation && localityPopulation["attributes"]
         ? localityPopulation["attributes"]["pincode"] || localityPopulation["attributes"]["locality"]
         : "NA"}}</span>
     </div>
     <div class="section">
       <span class="section--label">District</span
-      ><span class="section--district--value">{{ localityPopulation && localityPopulation["attributes"]
+      ><span class="section--value">{{ localityPopulation && localityPopulation["attributes"]
         ? localityPopulation["attributes"]["city"] || localityPopulation["attributes"]["district_n"]
         : "NA"}}</span>
     </div>
@@ -66,6 +66,9 @@ export default {
     &--label {
       color: black;
       padding: 1rem;
+    }
+    &--value{
+      text-align:center;
     }
   }
 }
